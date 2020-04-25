@@ -17,18 +17,17 @@ public class MainMenu extends AbstractMenu {
 
     @Override
     public void interactWithMenu() {
-        Scanner scan = new Scanner(System.in);
-       if (scan.hasNext()) {
-           try {
-               int choice = scan.nextInt();
-               System.out.println("Ввод прошел.");
+        Scanner scanner = new Scanner(System.in);
+        if (scanner.hasNext()) {
+            try {
+                int choiceNumber = scanner.nextInt();
+                System.out.println("Вы ввели " + choiceNumber);
+            } catch (InputMismatchException mismatchException) {
+                System.out.println("Неправильнный ввод данных. Пожалуйста введите число соотвествующее пункту меню");
+                this.printMenu();
+            }
+        }
 
-           } catch (InputMismatchException | IOException e) {
-               System.out.println("Введите число из списка.");
-               printMenu();
-           }
-       }
-
-        //interactWithMenu();  222
+        //interactWithMenu();  222:
     }
 }

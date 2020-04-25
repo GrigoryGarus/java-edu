@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Tests" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-04-25T15:04:21" hostname="DESKTOP-NVJ8LSR" time="0.011">
+<testsuite name="Tests" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-04-25T15:44:59" hostname="DESKTOP-NVJ8LSR" time="0.013">
   <properties/>
-  <testcase name="testSolution" classname="Tests" time="0.011">
-    <failure message="org.junit.ComparisonFailure: expected:&lt;Р’[С‹ РІРІРµР»Рё 5]&#10;&gt; but was:&lt;Р’[РІРѕРґ РїСЂРѕС€РµР».&#13;]&#10;&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;Р’[С‹ РІРІРµР»Рё 5]
-&gt; but was:&lt;Р’[РІРѕРґ РїСЂРѕС€РµР».]
+  <testcase name="testSolution" classname="Tests" time="0.013">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;Р’С‹ РІРІРµР»Рё 5[]&#10;&gt; but was:&lt;Р’С‹ РІРІРµР»Рё 5[&#13;]&#10;&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;Р’С‹ РІРІРµР»Рё 5[]
+&gt; but was:&lt;Р’С‹ РІРІРµР»Рё 5[]
 &gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at org.junit.Assert.assertEquals(Assert.java:144)
@@ -62,7 +62,7 @@
 	at java.base/java.lang.Thread.run(Thread.java:834)
 </failure>
   </testcase>
-  <system-out><![CDATA[Р’РІРѕРґ РїСЂРѕС€РµР».
+  <system-out><![CDATA[Р’С‹ РІРІРµР»Рё 5
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
