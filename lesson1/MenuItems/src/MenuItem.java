@@ -1,21 +1,19 @@
+import java.awt.*;
 import java.util.ArrayList;
 
 //TODO: Тут необходимо реализовать класс отвечающий описанию элементов меню
-public class MenuItem extends AbstractMenu {
+public class MenuItem {
 
     private String name;
     private int id;
 
-    public MenuItem(String name) {
+    public MenuItem(ArrayList items, String name) {
         this.name = name;
-        this.id = items.size()+1;
+        this.id = items.size() +1;
     }
     public void printM (){
         System.out.println(this.id+ " - "+this.name);
     }
 
-    @Override
-    public void interactWithMenu() {
 
-    }
 }

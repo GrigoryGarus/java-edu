@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Tests" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-04-25T17:08:57" hostname="DESKTOP-NVJ8LSR" time="0.005">
+<testsuite name="Tests" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-04-25T17:20:08" hostname="DESKTOP-NVJ8LSR" time="0.005">
   <properties/>
   <testcase name="testSolution" classname="Tests" time="0.005">
     <failure message="java.lang.AssertionError: Class MenuItemExecutor not exists" type="java.lang.AssertionError">java.lang.AssertionError: Class MenuItemExecutor not exists
