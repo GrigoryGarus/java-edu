@@ -3,7 +3,7 @@ import java.util.List;
 
 public abstract class AbstractMenu implements Menu {
     //TODO: Тут вы должны реализовать список элементов меню
-    protected ArrayList<String> items;
+    protected ArrayList<MenuItem> items;
     protected String MENU_HEADER = "Пожалуйста введите необходимый номер пункта меню:";
 
     public AbstractMenu() {
@@ -19,11 +19,11 @@ public abstract class AbstractMenu implements Menu {
         //TODO: Тут необходимо реализовать вызов методов элементов меню
         printMenuHeader();
 
-        for (int i = 1; i <items.size() ; i++) {
-            String printMenuItems = i + " - "+ items.get(i-1);
-            System.out.println(printMenuItems);
+        for (MenuItem item:items) {
+           item.printM();
 
         }
+
 
     }
 }

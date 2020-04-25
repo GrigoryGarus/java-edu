@@ -10,7 +10,9 @@ public class MainMenu extends AbstractMenu {
 
     private void initMenuItems() {
 //TODO: Тут вы должны реализовать возможность заполнения списка элементов меню
-        this.items.add("Создать");
+        this.items.add( new MenuItem("Создать"));
+        this.items.add( new MenuItem("Искать"));
+        this.items.add( new MenuItem("Удалить"));
     }
 
     @Override
