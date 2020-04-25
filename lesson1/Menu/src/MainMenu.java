@@ -28,6 +28,6 @@ public class MainMenu extends AbstractMenu {
             }
         }
 
-        //interactWithMenu();  222:
+        //interactWithMenu();  2
     }
 }
