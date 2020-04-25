@@ -1,0 +1,231 @@
+type: edu
+files:
+- name: test/Tests.java
+  visible: false
+  text: |
+    import org.junit.Assert;
+    import org.junit.Rule;
+    import org.junit.Test;
+    import org.junit.contrib.java.lang.system.SystemOutRule;
+
+    import static org.junit.Assert.assertEquals;
+
+    public class Tests {
+      @Rule
+      public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+
+      @Test
+      public void testSolution() {
+        try {
+          Class.forName("MenuItem");
+        } catch (ClassNotFoundException e) {
+          Assert.fail("Class MenuItem not exists");
+        }
+
+        try {
+          Class.forName("MenuItemExecutor");
+        } catch (ClassNotFoundException e) {
+          Assert.fail("Class MenuItemExecutor not exists");
+        }
+
+        Menu mainMenu = new MainMenu();
+        mainMenu.printMenu();
+
+        String validResult = systemOutRule.getLog();
+
+        assertEquals("Пожалуйста введите необходимый номер пункта меню:\n" +
+                "1 - Создать\n" +
+                "2 - Искать\n" +
+                "3 - Удалить\n", validResult);
+      }
+    }
+  learner_created: false
+- name: src/MainMenu.java
+  visible: true
+  placeholders:
+  - offset: 222
+    length: 113
+    placeholder_text: '//TODO: Тут вы должны реализовать возможность заполнения списка
+      элементов меню'
+    initial_state:
+      length: 78
+      offset: 222
+    initialized_from_dependency: false
+    possible_answer: |2-
+              this.items.add(new MenuItem(this.items, "Создать"));
+              this.items.add(new MenuItem(this.items, "Искать"));
+              this.items.add(new MenuItem(this.items, "Удалить"));
+    selected: true
+    status: Failed
+  - offset: 394
+    length: 359
+    placeholder_text: '//TODO: Тут вам необходимо реализовать считывание элемента
+      меню, а так же проверку вводного элемента'
+    dependency:
+      lesson: lesson1
+      task: Menu
+      file: src/MainMenu.java
+      placeholder: 1
+      is_visible: false
+    initial_state:
+      length: 100
+      offset: 359
+    initialized_from_dependency: false
+    possible_answer: |2-
+              Scanner scanner = new Scanner(System.in);
+              if (scanner.hasNext()) {
+                  try {
+                      int choiceNumber = scanner.nextInt();
+                      System.out.println("Вы ввели " + choiceNumber);
+                  } catch (InputMismatchException mismatchException) {
+                      System.out.println("Неправильнный ввод данных. Пожалуйста введите число соотвествующее пункту меню");
+                      this.printMenu();
+                  }
+              }
+    selected: true
+    status: Failed
+  text: |
+    import java.util.InputMismatchException;
+    import java.util.Scanner;
+
+    public class MainMenu extends AbstractMenu {
+
+        public MainMenu() {
+            super();
+            initMenuItems();
+        }
+
+        private void initMenuItems() {
+    //TODO: Тут вы должны реализовать возможность заполнения списка элементов меню
+        }
+
+        @Override
+        public void interactWithMenu() {
+    //TODO: Тут вам необходимо реализовать считывание элемента меню, а так же проверку вводного элемента
+        }
+    }
+  learner_created: false
+- name: src/AbstractMenu.java
+  visible: true
+  placeholders:
+  - offset: 109
+    length: 94
+    placeholder_text: '//TODO: Тут вы должны реализовать список элементов меню'
+    initial_state:
+      length: 55
+      offset: 109
+    initialized_from_dependency: false
+    possible_answer: protected List<MenuItem> items;
+    selected: true
+    status: Failed
+  - offset: 505
+    length: 263
+    placeholder_text: '//TODO: Тут необходимо реализовать вызов методов элементов
+      меню'
+    initial_state:
+      length: 63
+      offset: 466
+    initialized_from_dependency: false
+    possible_answer: |-
+      printMenuHeader();
+              this.items.forEach(MenuItem::print);
+    selected: true
+    status: Failed
+  text: |
+    import java.util.ArrayList;
+    import java.util.List;
+
+    public abstract class AbstractMenu implements Menu {
+        //TODO: Тут вы должны реализовать список элементов меню
+        protected String MENU_HEADER = "Пожалуйста введите необходимый номер пункта меню:";
+
+        public AbstractMenu() {
+            this.items = new ArrayList<>();
+        }
+
+        private void printMenuHeader() {
+            System.out.println(MENU_HEADER);
+        }
+
+        @Override
+        public void printMenu() {
+            //TODO: Тут необходимо реализовать вызов методов элементов меню
+        }
+    }
+  learner_created: false
+- name: src/Main.java
+  visible: true
+  text: |
+    public class Main {
+        public static void main(String[] args) {
+            Menu mainMenu = new MainMenu();
+            mainMenu.printMenu();
+            mainMenu.interactWithMenu();
+        }
+    }
+  learner_created: false
+- name: src/Menu.java
+  visible: true
+  text: |
+    public interface Menu {
+
+        void printMenu();
+
+        void interactWithMenu();
+    }
+  learner_created: false
+- name: src/MenuItemExecutor.java
+  visible: true
+  placeholders:
+  - offset: 0
+    length: 85
+    placeholder_text: '//TODO: Тут необходимо описать интерфейс позволяющий вызывать
+      выполение элемента меню'
+    initial_state:
+      length: 85
+      offset: 0
+    initialized_from_dependency: false
+    possible_answer: |
+      public interface MenuItemExecutor {
+          void execute();
+      }
+    selected: false
+    status: Failed
+  text: '//TODO: Тут необходимо описать интерфейс позволяющий вызывать выполение элемента
+    меню'
+  learner_created: false
+- name: src/MenuItem.java
+  visible: true
+  placeholders:
+  - offset: 0
+    length: 75
+    placeholder_text: '//TODO: Тут необходимо реализовать класс отвечающий описанию
+      элементов меню'
+    initial_state:
+      length: 75
+      offset: 0
+    initialized_from_dependency: false
+    possible_answer: |-
+      import java.util.List;
+
+      public class MenuItem {
+          private int number;
+          private String name;
+
+          public MenuItem(List items, String name) {
+              this.number = items.size() + 1;
+              this.name = name;
+          }
+
+          public void print() {
+              String menuElement = this.number + " - " + name;
+              System.out.println(menuElement);
+          }
+      }
+    selected: false
+    status: Failed
+  text: |
+    //TODO: Тут необходимо реализовать класс отвечающий описанию элементов меню
+  learner_created: false
+status: Failed
+record: -1
