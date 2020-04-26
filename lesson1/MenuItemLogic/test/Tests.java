@@ -38,7 +38,7 @@ public class Tests {
     systemInMock.provideLines("1\nИванов Иван Иванович; 18.06.1983; 34; 6.45; \"Работал над проектами: \"\"АБС\"\"; \"\"КВД\"\"\"");
     mainMenu.interactWithMenu();
 
-    String[] results = systemOutRule.getLog().split("\n");
+    String[] results = systemOutRule.getLogWithNormalizedLineSeparator().split("\n");
     Assert.assertEquals("Contact{fullName='20=>2 \u001820= \u001820=>28G', dob=Sat Jun 18 00:00:00 MSD 1983, countOfProjects=34, rating=6.45, comments='\" 01>B0 =04 ?@>5:B0<8: \"\"\u0010\u0011!\"\" \"\"\u001A\u0012\u0014\"\"\"'}", results[3]);
   }
 }

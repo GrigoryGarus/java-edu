@@ -26,7 +26,7 @@ public class Tests {
     Menu mainMenu = new MainMenu();
     mainMenu.printMenu();
 
-    String validResult = systemOutRule.getLog();
+    String validResult = systemOutRule.getLogWithNormalizedLineSeparator();
 
     assertEquals("Пожалуйста введите необходимый номер пункта меню:\n" +
             "1 - Создать\n" +

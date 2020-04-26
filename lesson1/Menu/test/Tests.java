@@ -18,14 +18,14 @@ public class Tests {
 
     systemInMock.provideLines("5");
     mainMenu.interactWithMenu();
-    String validResult = systemOutRule.getLog();
+    String validResult = systemOutRule.getLogWithNormalizedLineSeparator();
 
     assertEquals("Вы ввели 5\n", validResult);
     systemOutRule.clearLog();
 
     systemInMock.provideLines("5aaa");
     mainMenu.interactWithMenu();
-    String invalidResult = systemOutRule.getLog();
+    String invalidResult = systemOutRule.getLogWithNormalizedLineSeparator();
 
     assertEquals("Неправильнный ввод данных. Пожалуйста введите число соотвествующее пункту меню\n" +
             "Пожалуйста введите необходимый номер пункта меню:\n" +
