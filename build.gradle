@@ -55,3 +55,4 @@ configure(subprojects.findAll {it.name != 'util'}) {
     testCompile project(':util').sourceSets.test.output
   }
 }
+
