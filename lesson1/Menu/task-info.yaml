@@ -23,20 +23,20 @@ files:
 
         systemInMock.provideLines("5");
         mainMenu.interactWithMenu();
-        String validResult = systemOutRule.getLog();
+        String validResult = systemOutRule.getLogWithNormalizedLineSeparator();
 
-        assertEquals("Вы ввели 5\n", validResult);
+        assertEquals("Your input 5\n", validResult);
         systemOutRule.clearLog();
 
         systemInMock.provideLines("5aaa");
         mainMenu.interactWithMenu();
-        String invalidResult = systemOutRule.getLog();
+        String invalidResult = systemOutRule.getLogWithNormalizedLineSeparator();
 
-        assertEquals("Неправильнный ввод данных. Пожалуйста введите число соотвествующее пункту меню\n" +
-                "Пожалуйста введите необходимый номер пункта меню:\n" +
-                "1 - Создать\n" +
-                "2 - Искать\n" +
-                "3 - Удалить\n", invalidResult);
+        assertEquals("Invalid input data\n" +
+                "Please input required menu item:\n" +
+                "1 - Create\n" +
+                "2 - Search\n" +
+                "3 - Delete\n", invalidResult);
       }
 
 
@@ -60,7 +60,7 @@ files:
 
     public abstract class AbstractMenu implements Menu {
         protected List<String> items;
-        protected String MENU_HEADER = "Пожалуйста введите необходимый номер пункта меню:";
+        protected String MENU_HEADER = "Please input required menu item:";
 
         public AbstractMenu() {
             this.items = new ArrayList<>();
@@ -75,9 +75,7 @@ files:
             printMenuHeader();
 
             for (int i = 1; i <= items.size(); i++) {
-                String printableMenuItem = i +
-                        " - " +
-                        items.get(i - 1);
+                String printableMenuItem = i + " - " + items.get(i - 1);
                 System.out.println(printableMenuItem);
             }
         }
@@ -86,26 +84,26 @@ files:
 - name: src/MainMenu.java
   visible: true
   placeholders:
-  - offset: 412
-    length: 493
+  - offset: 382
+    length: 4
     placeholder_text: TODO
     initial_state:
       length: 4
-      offset: 384
+      offset: 382
     initialized_from_dependency: false
     possible_answer: |2-
               Scanner scanner = new Scanner(System.in);
               if (scanner.hasNext()) {
                   try {
                       int choiceNumber = scanner.nextInt();
-                      System.out.println("Вы ввели " + choiceNumber);
+                      System.out.println("Your input " + choiceNumber);
                   } catch (InputMismatchException mismatchException) {
-                      System.out.println("Неправильнный ввод данных. Пожалуйста введите число соотвествующее пункту меню");
+                      System.out.println("Invalid input data");
                       this.printMenu();
                   }
               }
-    selected: true
-    status: Failed
+    selected: false
+    status: Unchecked
   text: |
     import java.util.InputMismatchException;
     import java.util.Scanner;
@@ -118,9 +116,9 @@ files:
         }
 
         private void initMenuItems() {
-            this.items.add("Создать");
-            this.items.add("Искать");
-            this.items.add("Удалить");
+            this.items.add("Create");
+            this.items.add("Search");
+            this.items.add("Delete");
         }
 
         @Override
@@ -140,5 +138,6 @@ files:
         }
     }
   learner_created: false
-status: Failed
+status: Unchecked
 record: -1
+solution_hidden: true

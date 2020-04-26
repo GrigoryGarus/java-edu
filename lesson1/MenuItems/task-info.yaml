@@ -31,12 +31,13 @@ files:
         Menu mainMenu = new MainMenu();
         mainMenu.printMenu();
 
-        String validResult = systemOutRule.getLog();
+        String validResult = systemOutRule.getLogWithNormalizedLineSeparator();
 
-        assertEquals("Пожалуйста введите необходимый номер пункта меню:\n" +
-                "1 - Создать\n" +
-                "2 - Искать\n" +
-                "3 - Удалить\n", validResult);
+        assertEquals("Invalid input data\n" +
+                "Please input required menu item:\n" +
+                "1 - Create\n" +
+                "2 - Search\n" +
+                "3 - Delete", validResult);
       }
     }
   learner_created: false
@@ -44,7 +45,7 @@ files:
   visible: true
   placeholders:
   - offset: 222
-    length: 260
+    length: 78
     placeholder_text: '//TODO: Тут вы должны реализовать возможность заполнения списка
       элементов меню'
     initial_state:
@@ -52,13 +53,18 @@ files:
       offset: 222
     initialized_from_dependency: false
     possible_answer: |2-
-              this.items.add(new MenuItem(this.items, "Создать"));
-              this.items.add(new MenuItem(this.items, "Искать"));
-              this.items.add(new MenuItem(this.items, "Удалить"));
-    selected: true
-    status: Failed
-  - offset: 541
-    length: 359
+              this.items.add(
+                      new MenuItem(
+                              this.items,
+                              "Create"
+                      )
+              );
+              this.items.add(new MenuItem(this.items, "Search"));
+              this.items.add(new MenuItem(this.items, "Delete"));
+    selected: false
+    status: Unchecked
+  - offset: 359
+    length: 100
     placeholder_text: '//TODO: Тут вам необходимо реализовать считывание элемента
       меню, а так же проверку вводного элемента'
     dependency:
@@ -76,14 +82,14 @@ files:
               if (scanner.hasNext()) {
                   try {
                       int choiceNumber = scanner.nextInt();
-                      System.out.println("Вы ввели " + choiceNumber);
+                      System.out.println("Your input " + choiceNumber);
                   } catch (InputMismatchException mismatchException) {
-                      System.out.println("Неправильнный ввод данных. Пожалуйста введите число соотвествующее пункту меню");
+                      System.out.println("Invalid input data");
                       this.printMenu();
                   }
               }
-    selected: true
-    status: Failed
+    selected: false
+    status: Unchecked
   text: |
     import java.util.InputMismatchException;
     import java.util.Scanner;
@@ -109,35 +115,36 @@ files:
   visible: true
   placeholders:
   - offset: 109
-    length: 96
+    length: 55
     placeholder_text: '//TODO: Тут вы должны реализовать список элементов меню'
     initial_state:
       length: 55
       offset: 109
     initialized_from_dependency: false
     possible_answer: protected List<MenuItem> items;
-    selected: true
-    status: Failed
-  - offset: 507
-    length: 166
+    selected: false
+    status: Unchecked
+  - offset: 449
+    length: 63
     placeholder_text: '//TODO: Тут необходимо реализовать вызов методов элементов
       меню'
     initial_state:
       length: 63
-      offset: 466
+      offset: 449
     initialized_from_dependency: false
     possible_answer: |-
       printMenuHeader();
+
               this.items.forEach(MenuItem::print);
-    selected: true
-    status: Failed
+    selected: false
+    status: Unchecked
   text: |
     import java.util.ArrayList;
     import java.util.List;
 
     public abstract class AbstractMenu implements Menu {
         //TODO: Тут вы должны реализовать список элементов меню
-        protected String MENU_HEADER = "Пожалуйста введите необходимый номер пункта меню:";
+        protected String MENU_HEADER = "Please input required menu item:";
 
         public AbstractMenu() {
             this.items = new ArrayList<>();
@@ -189,8 +196,8 @@ files:
       public interface MenuItemExecutor {
           void execute();
       }
-    selected: true
-    status: Failed
+    selected: false
+    status: Unchecked
   text: '//TODO: Тут необходимо описать интерфейс позволяющий вызывать выполение элемента
     меню'
   learner_created: false
@@ -198,7 +205,7 @@ files:
   visible: true
   placeholders:
   - offset: 0
-    length: 123
+    length: 75
     placeholder_text: '//TODO: Тут необходимо реализовать класс отвечающий описанию
       элементов меню'
     initial_state:
@@ -222,10 +229,11 @@ files:
               System.out.println(menuElement);
           }
       }
-    selected: true
-    status: Failed
+    selected: false
+    status: Unchecked
   text: |
     //TODO: Тут необходимо реализовать класс отвечающий описанию элементов меню
   learner_created: false
-status: Failed
+status: Unchecked
 record: -1
+solution_hidden: true
